@@ -29,24 +29,24 @@ SET BUILD_SRC_15=..\src-jdk15
 SET BUILD_SRC=..\src
 SET BUILD_DEPLOY=..\..\release\lib
 
-mkdir %BUILD_DEPLOY%\deployed\%JDK_DEPLOY%\%PLATFORM%
+mkdir "%BUILD_DEPLOY%\deployed\%JDK_DEPLOY%\%PLATFORM%"
 
-rc /Fo .\version.res %BUILD_SRC_15%\windows\version.rc
+rc /Fo .\version.res "%BUILD_SRC_15%\windows\version.rc"
 
-cl /I%BUILD_JDK%\include /I%BUILD_JDK%\include\win32 ^
-%BUILD_SRC_15%\class_file_cache.c ^
-%BUILD_SRC_15%\attach.c ^
-%BUILD_SRC_15%\Classes.c ^
-%BUILD_SRC_15%\HeapDump.c ^
-%BUILD_SRC_15%\Timers.c ^
-%BUILD_SRC_15%\GC.c ^
-%BUILD_SRC_15%\Threads.c ^
-%BUILD_SRC_15%\Stacks.c ^
-%BUILD_SRC_15%\common_functions.c ^
-version.res ^
-/D WIN32 /D NDEBUG /LD /MD /O2 ^
-/Fe:%BUILD_DEPLOY%\deployed\%JDK_DEPLOY%\%PLATFORM%\profilerinterface.dll ^
-/Fm:%BUILD_DEPLOY%\deployed\%JDK_DEPLOY%\%PLATFORM%\profilerinterface.map ^
-/link /DYNAMICBASE
+cl /I"%BUILD_JDK%\include" /I"%BUILD_JDK%\include\win32" ^
+  "%BUILD_SRC_15%\class_file_cache.c" ^
+  "%BUILD_SRC_15%\attach.c" ^
+  "%BUILD_SRC_15%\Classes.c" ^
+  "%BUILD_SRC_15%\HeapDump.c" ^
+  "%BUILD_SRC_15%\Timers.c" ^
+  "%BUILD_SRC_15%\GC.c" ^
+  "%BUILD_SRC_15%\Threads.c" ^
+  "%BUILD_SRC_15%\Stacks.c" ^
+  "%BUILD_SRC_15%\common_functions.c" ^
+  version.res ^
+  /D WIN32 /D NDEBUG /LD /MD /O2 ^
+  /Fe:"%BUILD_DEPLOY%\deployed\%JDK_DEPLOY%\%PLATFORM%\profilerinterface.dll" ^
+  /Fm:"%BUILD_DEPLOY%\deployed\%JDK_DEPLOY%\%PLATFORM%\profilerinterface.map" ^
+  /link /DYNAMICBASE
 
 del version.res
